@@ -23,27 +23,28 @@ const argv = yargs
   .option("interactive", {
     default: false,
     describe: "Run the app in interactive mode?",
+    type: "boolean",
   })
   .parseSync();
 
 export class App implements IExecute {
   private _stepQueue: IStep[] = [
-      new StartupStep(this),
-      new RetrieveProductsStep(this),
-      new SortProductsStep(this),
-      new GenerateReportStep(this),
+    new StartupStep(this),
+    new RetrieveProductsStep(this),
+    new SortProductsStep(this),
+    new GenerateReportStep(this),
   ];
 
   products: Product[] = [];
   readonly argv = argv;
 
   async executeAsync(): Promise<void> {
-      for (const step of this._stepQueue) {
-        if (argv.interactive) {
-            step.executeInteractive();
-        } else {
-            await step.executeAsync();
-        }
+    for (const step of this._stepQueue) {
+      if (argv.interactive && step.supportsInteractive) {
+        step.executeInteractive();
+      } else {
+        await step.executeAsync();
       }
+    }
   }
 }
