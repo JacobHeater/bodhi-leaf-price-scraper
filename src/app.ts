@@ -20,6 +20,11 @@ const argv = yargs
     choices: REPORT_OPTIONS,
     describe: "How to present the report results.",
   })
+  .option("pretty", {
+    default: false,
+    type: "boolean",
+    describe: "Print JSON in pretty print format?"
+  })
   .option("interactive", {
     default: false,
     describe: "Run the app in interactive mode?",

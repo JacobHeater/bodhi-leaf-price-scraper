@@ -1,4 +1,4 @@
-import { Product } from "../models/product";
+import { Product } from "../../models/product";
 import { IProductReporter } from "./iproduct-reporter";
 
 export class TableProductReporter implements IProductReporter {

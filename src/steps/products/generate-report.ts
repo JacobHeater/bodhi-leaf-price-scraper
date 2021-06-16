@@ -1,9 +1,9 @@
-import { JsonProductReporter } from "../../data/json-product-reporter";
-import { TableProductReporter } from "../../data/table-product-reporter";
 import { Logger } from "../../logger";
 import { REPORT_OPTIONS } from "../../report-options";
 import { StepBase } from "../step-base";
 import readline from "readline-sync";
+import { TableProductReporter } from "../../data/reports/table-product-reporter";
+import { JsonProductReporter } from "../../data/reports/json-product-reporter";
 
 export class GenerateReportStep extends StepBase {
   async executeAsync(): Promise<void> {
@@ -35,7 +35,7 @@ export class GenerateReportStep extends StepBase {
         );
         break;
       default:
-        generatedReport = new JsonProductReporter().generateReport(
+        generatedReport = new JsonProductReporter(this.app.argv.pretty).generateReport(
           this.app.products
         );
         break;
