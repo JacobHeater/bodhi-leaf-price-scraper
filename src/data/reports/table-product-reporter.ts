@@ -3,15 +3,12 @@ import { IProductReporter } from "./iproduct-reporter";
 
 export class TableProductReporter implements IProductReporter {
   generateReport(products: Product[]): string {
-    let generatedReport = "Title | Price | Rating"
-      .concat("\n---------------------------")
-      .concat(
-        products.reduce(
-          (c, n) => `${c}\n${n.title} | $${n.price} | ${n.rating} stars`,
-          ""
-        )
-      );
+    return this.generateHeaderRow().concat(
+      products.map((p) => p.toTableRow()).join("\n")
+    );
+  }
 
-    return generatedReport;
+  private generateHeaderRow(): string {
+    return "Title | Price | Rating".concat("\n----------------------------\n");
   }
 }

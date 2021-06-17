@@ -10,4 +10,8 @@ export class Product {
       rating: `${this.rating} stars`,
     };
   }
+
+  toTableRow(): string {
+    return `${this.title} | $${this.price} | ${this.rating} stars`;
+  }
 }
