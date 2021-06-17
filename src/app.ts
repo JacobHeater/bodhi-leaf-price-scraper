@@ -14,12 +14,14 @@ const argv = yargs
   .version(`Bodhi Leaf Coffee and Tea Price Scraper v${version}`)
   .option("sort", {
     alias: "s",
+    type: "string",
     default: `${KEY_PRICE} ${DIR_ASCENDING}`,
     choices: SORT_OPTIONS,
     describe: "How to sort the product results.",
   })
   .option("format", {
     alias: "f",
+    type: "string",
     default: REPORT_FORMAT_TABLE,
     choices: REPORT_FORMATS,
     describe: "How to present the report results.",
