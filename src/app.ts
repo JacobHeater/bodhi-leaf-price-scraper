@@ -11,7 +11,7 @@ import { StartupStep } from "./steps/startup/startup";
 import { version } from "../package.json";
 
 const argv = yargs
-  .version(`Bodhi Leaf Coffee and Tea Price Scraper v${version}`)
+  .version(`Bodhi Leaf Coffee Traders Price Scraper v${version}`)
   .option("sort", {
     alias: "s",
     type: "string",

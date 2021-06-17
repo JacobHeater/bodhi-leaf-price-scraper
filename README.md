@@ -1,9 +1,9 @@
-# Bodhi Leaf Coffee and Tea Price Scraper
+# Bodhi Leaf Coffee Trader's Price Scraper
 
 This app is designed to make it easy to search and scrape
-Bodhi Leaf's green coffee items. You can use this tool via
-the command line, and then pipe it to filter results. There
-is some basic sorting features designed to render the output
+[Bodhi Leaf's](https://www.bodhileafcoffee.com/) green coffee items. 
+You can use this tool via the command line, and then pipe it to filter 
+results. There is some basic sorting features designed to render the output
 as desired.
 
 You may format the data in the following formats: JSON, table, and
