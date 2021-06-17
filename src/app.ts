@@ -1,8 +1,8 @@
 import yargs from "yargs";
-import { IExecute } from "./iexecute";
+import { IExecute } from "./steps/iexecute";
 import { Product } from "./models/product";
-import { REPORT_FORMATS, REPORT_FORMAT_TABLE } from "./report-options";
-import { DIR_ASCENDING, KEY_PRICE, SORT_OPTIONS } from "./sort-options";
+import { REPORT_FORMATS, REPORT_FORMAT_TABLE } from "./data/reports/report-options";
+import { DIR_ASCENDING, KEY_PRICE, SORT_OPTIONS } from "./data/sort-options";
 import { IStep } from "./steps/istep";
 import { GenerateReportStep } from "./steps/products/generate-report";
 import { RetrieveProductsStep } from "./steps/products/retrieve-products";

@@ -1,6 +1,6 @@
-import { Logger } from "../../logger";
 import { StepBase } from "../step-base";
 import { version } from '../../../package.json';
+import { Logger } from "../../logging/logger";
 
 export class StartupStep extends StepBase {
   supportsInteractive = false;

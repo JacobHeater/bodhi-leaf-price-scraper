@@ -1,5 +1,5 @@
 import { ProductController } from "../../controllers/product-controller";
-import { Logger } from "../../logger";
+import { Logger } from "../../logging/logger";
 import { StepBase } from "../step-base";
 
 export class RetrieveProductsStep extends StepBase {

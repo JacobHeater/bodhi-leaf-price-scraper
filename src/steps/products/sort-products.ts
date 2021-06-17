@@ -1,9 +1,9 @@
 import { StepBase } from "../step-base";
 import readline from "readline-sync";
-import { Logger } from "../../logger";
-import { SORT_OPTIONS } from "../../sort-options";
+import { SORT_OPTIONS } from "../../data/sort-options";
 import { sortAscending, sortDescending } from "../../data/sort";
 import { Product } from "../../models/product";
+import { Logger } from "../../logging/logger";
 
 export class SortProductsStep extends StepBase {
   async executeAsync(...args: any[]): Promise<void> {

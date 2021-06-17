@@ -1,15 +1,15 @@
-import { Logger } from "../../logger";
 import {
   REPORT_FORMATS,
   REPORT_FORMAT_CSV,
   REPORT_FORMAT_JSON,
   REPORT_FORMAT_TABLE,
-} from "../../report-options";
+} from "../../data/reports/report-options";
 import { StepBase } from "../step-base";
 import readline from "readline-sync";
 import { TableProductReporter } from "../../data/reports/table-product-reporter";
 import { JsonProductReporter } from "../../data/reports/json-product-reporter";
 import { CSVProductReporter } from "../../data/reports/csv-product-reporter";
+import { Logger } from "../../logging/logger";
 
 export class GenerateReportStep extends StepBase {
   async executeAsync(): Promise<void> {
