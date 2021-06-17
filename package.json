@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx ts-node index.ts",
+    "help": "npm start -- --help",
     "build": "npx tsc"
   },
   "author": "",

@@ -1,5 +1,5 @@
 import { Logger } from "../../logger";
-import { REPORT_OPTIONS } from "../../report-options";
+import { REPORT_FORMATS, REPORT_FORMAT_JSON, REPORT_FORMAT_TABLE } from "../../report-options";
 import { StepBase } from "../step-base";
 import readline from "readline-sync";
 import { TableProductReporter } from "../../data/reports/table-product-reporter";
@@ -12,10 +12,10 @@ export class GenerateReportStep extends StepBase {
   }
   executeInteractive(): void {
     const reportSelectionIndex = readline.keyInSelect(
-      REPORT_OPTIONS,
+      REPORT_FORMATS,
       "How do you want the report to be formatted?"
     );
-    const reportSelection = REPORT_OPTIONS[reportSelectionIndex];
+    const reportSelection = REPORT_FORMATS[reportSelectionIndex];
 
     if (reportSelectionIndex === -1) {
       Logger.warn("Cancelling...");
@@ -29,11 +29,12 @@ export class GenerateReportStep extends StepBase {
     let generatedReport = "";
 
     switch (reportSelection) {
-      case "Table Format":
+      case REPORT_FORMAT_TABLE:
         generatedReport = new TableProductReporter().generateReport(
           this.app.products
         );
         break;
+      case REPORT_FORMAT_JSON:
       default:
         generatedReport = new JsonProductReporter(this.app.argv.pretty).generateReport(
           this.app.products

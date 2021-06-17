@@ -1,31 +1,37 @@
 import yargs from "yargs";
 import { IExecute } from "./iexecute";
 import { Product } from "./models/product";
-import { REPORT_OPTIONS } from "./report-options";
-import { SORT_OPTIONS } from "./sort-options";
+import { REPORT_FORMATS, REPORT_FORMAT_TABLE } from "./report-options";
+import { DIR_ASCENDING, KEY_PRICE, SORT_OPTIONS } from "./sort-options";
 import { IStep } from "./steps/istep";
 import { GenerateReportStep } from "./steps/products/generate-report";
 import { RetrieveProductsStep } from "./steps/products/retrieve-products";
 import { SortProductsStep } from "./steps/products/sort-products";
 import { StartupStep } from "./steps/startup/startup";
+import { version } from "../package.json";
 
 const argv = yargs
+  .version(`Bodhi Leaf Coffee and Tea Price Scraper v${version}`)
   .option("sort", {
-    default: "price ASC",
+    alias: "s",
+    default: `${KEY_PRICE} ${DIR_ASCENDING}`,
     choices: SORT_OPTIONS,
     describe: "How to sort the product results.",
   })
   .option("format", {
-    default: "Table Format",
-    choices: REPORT_OPTIONS,
+    alias: "f",
+    default: REPORT_FORMAT_TABLE,
+    choices: REPORT_FORMATS,
     describe: "How to present the report results.",
   })
   .option("pretty", {
+    alias: "p",
     default: false,
     type: "boolean",
-    describe: "Print JSON in pretty print format?"
+    describe: "Print JSON in pretty print format?",
   })
   .option("interactive", {
+    alias: "i",
     default: false,
     describe: "Run the app in interactive mode?",
     type: "boolean",

@@ -25,6 +25,21 @@ You must install Node.js to run this tool.
 3. Run `npm start`
     a. To pass additional command line arguments see examples below.
 
+#### Command Line Parameters
+
+```shell
+Options:
+      --help         Show help                                         [boolean]
+      --version      Show version number                               [boolean]
+  -s, --sort         How to sort the product results.
+  [choices: "price ASC", "price DESC", "rating ASC", "rating DESC", "title ASC",
+                                            "title DESC"] [default: "price ASC"]
+  -f, --format       How to present the report results.
+                                   [choices: "table", "json"] [default: "table"]
+  -p, --pretty       Print JSON in pretty print format?
+                                                      [boolean] [default: false]
+  -i, --interactive  Run the app in interactive mode? [boolean] [default: false]
+```
 
 ## Configuration
 
