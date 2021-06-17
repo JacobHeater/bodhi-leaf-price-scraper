@@ -6,9 +6,8 @@ the command line, and then pipe it to filter results. There
 is some basic sorting features designed to render the output
 as desired.
 
-There are two formats for formatting the data – JSON and Table format.
-JSON could be useful for additional data manipulation and consumption.
-Table format is designed to be human readable.
+You may format the data in the following formats: JSON, table, and
+CSV.
 
 ## Getting Started
 
