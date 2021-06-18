@@ -9,7 +9,7 @@
     "search": "npx ts-node search-by-id.ts",
     "help": "npm start -- --help",
     "help:search": "npm run search -- --help",
-    "build": "npx tsc"
+    "build": "npx tsc && npx rimraf dist"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "@types/json2csv": "^5.0.2",
     "@types/readline-sync": "^1.4.3",
     "@types/yargs": "^17.0.0",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   },
