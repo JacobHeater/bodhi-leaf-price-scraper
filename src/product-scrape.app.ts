@@ -1,5 +1,4 @@
 import yargs from "yargs";
-import { IExecute } from "./steps/iexecute";
 import { Product } from "./models/product";
 import { REPORT_FORMATS, REPORT_FORMAT_TABLE } from "./data/reports/report-options";
 import { DIR_ASCENDING, KEY_PRICE, SORT_OPTIONS } from "./data/sort-options";
@@ -9,6 +8,7 @@ import { RetrieveProductsStep } from "./steps/products/retrieve-products";
 import { SortProductsStep } from "./steps/products/sort-products";
 import { StartupStep } from "./steps/startup/startup";
 import { version } from "../package.json";
+import { AppBase } from "./app-base";
 
 const argv = yargs
   .version(`Bodhi Leaf Coffee Traders Price Scraper v${version}`)
@@ -38,10 +38,15 @@ const argv = yargs
     describe: "Run the app in interactive mode?",
     type: "boolean",
   })
+  .option("noHeader", {
+    type: "boolean",
+    default: false,
+    describe: "Do you want to omit the header from stdout?",
+  })
   .parseSync();
 
-export class App implements IExecute {
-  private _stepQueue: IStep[] = [
+export class App extends AppBase {
+  stepQueue = [
     new StartupStep(this),
     new RetrieveProductsStep(this),
     new SortProductsStep(this),
@@ -52,12 +57,6 @@ export class App implements IExecute {
   readonly argv = argv;
 
   async executeAsync(): Promise<void> {
-    for (const step of this._stepQueue) {
-      if (argv.interactive && step.supportsInteractive) {
-        step.executeInteractive();
-      } else {
-        await step.executeAsync();
-      }
-    }
+    await this.runStepsAsync(this.argv.interactive);
   }
 }

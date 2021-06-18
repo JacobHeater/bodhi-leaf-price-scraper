@@ -4,8 +4,9 @@ import { SORT_OPTIONS } from "../../data/sort-options";
 import { sortAscending, sortDescending } from "../../data/sort";
 import { Product } from "../../models/product";
 import { Logger } from "../../logging/logger";
+import { App } from "../../product-scrape.app";
 
-export class SortProductsStep extends StepBase {
+export class SortProductsStep extends StepBase<App> {
   async executeAsync(...args: any[]): Promise<void> {
     const sortSelection = this.app.argv.sort;
     this.sortProductsBasedOnInput(sortSelection);

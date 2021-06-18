@@ -26,7 +26,7 @@ You must install Node.js to run this tool.
 
 #### Command Line Parameters
 
-```shell
+```bash
 Options:
       --help         Show help                                         [boolean]
       --version      Show version number                               [boolean]
@@ -38,6 +38,8 @@ Options:
   -p, --pretty       Print JSON in pretty print format?
                                                       [boolean] [default: false]
   -i, --interactive  Run the app in interactive mode? [boolean] [default: false]
+      --noHeader     Do you want to omit the header from stdout?
+                                                      [boolean] [default: false]
 ```
 
 ## Configuration
@@ -48,27 +50,33 @@ There are two way to run the app – interactive, and non-interactive.
 
 ### Interactive
 
-```shell
+```bash
 npm start -- --interactive
 ```
 
 ### Non-Interactive
 
-```shell
+```bash
 npm start
 ```
 
 #### Non-Interactive With Arguments
 
-```shell
+```bash
 npm start -- --sort "price DESC" --format JSON
 ```
 
 ### Getting Help
 
-```shell
+```bash
 npm start -- --help
 ```
+
+## Searching for Coffees by Id
+
+If you have found a coffee in the output that you would like to search
+by id, you may use the command line to search for a specific coffee by
+id. Usage instructions can be found at [SEARCH.md](/SEARCH.md).
 
 ## Issues
 

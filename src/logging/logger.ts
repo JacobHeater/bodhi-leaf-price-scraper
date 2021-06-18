@@ -14,8 +14,20 @@ export class Logger {
     return this;
   }
 
+  static error(...args: any[]): Logger {
+    console.error(chalk.red(...args));
+
+    return this;
+  }
+
   static async logAsciiAsync(): Promise<Logger> {
     this.info(await ResourceReader.readAsciiAsync());
+
+    return this;
+  }
+
+  static async logSearchAsciiAsync(): Promise<Logger> {
+    this.info(await ResourceReader.readSearchAsciiAsync());
 
     return this;
   }

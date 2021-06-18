@@ -1,7 +1,7 @@
 import { StepBase } from "../step-base";
-import { version } from '../../../package.json';
+import { version } from "../../../package.json";
 import { Logger } from "../../logging/logger";
-import { App } from "../../product-scrape.app";
+import { App } from "../../search-by-id.app";
 
 export class StartupStep extends StepBase<App> {
   supportsInteractive = false;
@@ -9,7 +9,7 @@ export class StartupStep extends StepBase<App> {
   async executeAsync(): Promise<void> {
     if (this.app.argv.noHeader) return;
 
-    await Logger.logAsciiAsync();
+    await Logger.logSearchAsciiAsync();
     Logger.info(version);
   }
 

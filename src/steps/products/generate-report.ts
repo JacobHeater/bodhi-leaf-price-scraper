@@ -6,12 +6,14 @@ import {
 } from "../../data/reports/report-options";
 import { StepBase } from "../step-base";
 import readline from "readline-sync";
-import { TableProductReporter } from "../../data/reports/table-product-reporter";
-import { JsonProductReporter } from "../../data/reports/json-product-reporter";
-import { CSVProductReporter } from "../../data/reports/csv-product-reporter";
+import { TableReporter } from "../../data/reports/table-reporter";
+import { JsonReporter } from "../../data/reports/json-reporter";
+import { CSVReporter } from "../../data/reports/csv-reporter";
 import { Logger } from "../../logging/logger";
+import { App } from "../../product-scrape.app";
+import { Product } from "../../models/product";
 
-export class GenerateReportStep extends StepBase {
+export class GenerateReportStep extends StepBase<App> {
   async executeAsync(): Promise<void> {
     const reportSelection = this.app.argv.format;
     this.generateReportForReportSelection(reportSelection);
@@ -36,18 +38,18 @@ export class GenerateReportStep extends StepBase {
 
     switch (reportSelection) {
       case REPORT_FORMAT_TABLE:
-        generatedReport = new TableProductReporter().generateReport(
+        generatedReport = new TableReporter(Product.headerRow).generateReport(
           this.app.products
         );
         break;
       case REPORT_FORMAT_CSV:
-        generatedReport = new CSVProductReporter().generateReport(
+        generatedReport = new CSVReporter().generateReport(
           this.app.products
         );
         break;
       case REPORT_FORMAT_JSON:
       default:
-        generatedReport = new JsonProductReporter(
+        generatedReport = new JsonReporter(
           this.app.argv.pretty
         ).generateReport(this.app.products);
         break;

@@ -1,8 +1,9 @@
 import { ProductController } from "../../controllers/product-controller";
 import { Logger } from "../../logging/logger";
+import { App } from "../../product-scrape.app";
 import { StepBase } from "../step-base";
 
-export class RetrieveProductsStep extends StepBase {
+export class RetrieveProductsStep extends StepBase<App> {
   supportsInteractive = false;
   
   async executeAsync(): Promise<void> {
