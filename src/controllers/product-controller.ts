@@ -3,8 +3,9 @@ import { JSDOM } from "jsdom";
 import { Base64 } from "../encoding/base64";
 import { Product } from "../models/product";
 import { ProductDetails } from "../models/product-details";
-import htmlToText from 'html-to-text';
+import htmlToText from "html-to-text";
 import { Logger } from "../logging/logger";
+import { DescriptionMetadataDefinition } from "../models/product-details-metadata-definitions";
 
 const BASE_URL = "https://www.bodhileafcoffee.com/";
 
@@ -18,19 +19,38 @@ export class ProductController {
   }
 
   private getDescription(elem: Element): string {
-    const description = elem
-      ?.querySelector("p:nth-child(2)")
-      ?.innerHTML?.trim()
-      .replace(/^description\:/i, "")
-      .trim();
+    let hasFoundDescription: boolean = false;
+    const metadata = elem.innerHTML?.trim();
+    const metadataLines = htmlToText.convert(metadata).split("\n");
+    const descOutput: string[] = [];
 
-    return htmlToText.convert(description!);
+    const descriptionMetadataDef = new DescriptionMetadataDefinition();
+
+    for (const line of metadataLines) {
+      if (descriptionMetadataDef.isMatch(line) || hasFoundDescription) {
+        hasFoundDescription = true;
+        descOutput.push(line);
+      }
+    }
+
+    return descOutput.join("\n");
   }
 
   private getMetadata(elem: Element): string {
-    const metadata = elem.querySelector('p:first-child')?.innerHTML?.trim();
+    const metadata = elem.innerHTML?.trim();
+    const metadataLines = htmlToText.convert(metadata).split("\n");
+    const metadataOutput: string[] = [];
+    const descriptionMetadataDef = new DescriptionMetadataDefinition();
 
-    return htmlToText.convert(metadata!);
+    for (const line of metadataLines) {
+      if (!descriptionMetadataDef.isMatch(line)) {
+        metadataOutput.push(line);
+      } else {
+        break;
+      }
+    }
+
+    return metadataOutput.join("\n");
   }
 
   private async findProductByIdAsync(id: string): Promise<ProductDetails> {
@@ -39,8 +59,8 @@ export class ProductController {
     try {
       response = await axios.get(url);
     } catch (e) {
-      if (e.message.includes('404')) {
-        Logger.error('Coffee not found. Exiting with non-zero status code.');
+      if (e.message.includes("404")) {
+        Logger.error("Coffee not found. Exiting with non-zero status code.");
 
         process.exit(1);
       } else {
@@ -52,24 +72,35 @@ export class ProductController {
     const descriptionContainer = document.querySelector(".description");
     const description = this.getDescription(descriptionContainer!);
     const metadata = this.getMetadata(descriptionContainer!);
-    const price = parseFloat(document.querySelector('.current_price')?.textContent?.replace('$', '').trim() as string);
+    
+    const price = parseFloat(
+      document
+        .querySelector(".current_price")
+        ?.textContent?.replace("$", "")
+        .trim() as string
+    );
     const rating = parseFloat(
       document
         .querySelector(".jdgm-prev-badge__stars")
         ?.getAttribute("data-score") as string
     );
-    const title = document.querySelector('.product_name')?.textContent?.trim() as string;
+    const title = document
+      .querySelector(".product_name")
+      ?.textContent?.trim() as string;
 
-    return Object.assign<ProductDetails, Partial<ProductDetails>>(new ProductDetails(), {
-      product: Object.assign<Product, Partial<Product>>(new Product(), {
-        id,
-        price,
-        rating,
-        title,
-      }),
-      description,
-      metadata,
-    });
+    return Object.assign<ProductDetails, Partial<ProductDetails>>(
+      new ProductDetails(),
+      {
+        product: Object.assign<Product, Partial<Product>>(new Product(), {
+          id,
+          price,
+          rating,
+          title,
+        }),
+        description,
+        metadata,
+      }
+    );
   }
 
   private async findAllProductsAsync(
