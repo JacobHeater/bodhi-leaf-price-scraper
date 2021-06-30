@@ -28,7 +28,7 @@ export class GenerateReportStep extends StepBase<App> {
 
     switch (reportSelection) {
       case REPORT_FORMAT_TEXT:
-          generatedReport = new TextReporter().generateReport(this.app.productDetails);
+          generatedReport = new TextReporter().generateReport(this.app.productDetails, this.app.buildIgnoreKeys());
         break;
       case REPORT_FORMAT_JSON:
       default:

@@ -1,3 +1,3 @@
 export interface ISupportPlainTextOutput {
-  toPlainText(): string;
+  toPlainText(ignoreKeys?: string[]): string;
 }

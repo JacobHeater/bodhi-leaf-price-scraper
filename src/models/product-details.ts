@@ -6,10 +6,10 @@ export class ProductDetails implements ISupportPlainTextOutput {
   description: string = "";
   metadata: string = "";
 
-  toPlainText(): string {
+  toPlainText(ignoreKeys: string[] = []): string {
     return (
 `
-${this.product.toPlainText()}
+${this.product.toPlainText(ignoreKeys)}
 
 ${this.metadata}
 

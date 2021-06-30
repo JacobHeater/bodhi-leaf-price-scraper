@@ -15,6 +15,16 @@ const argv = yargs
     type: "string",
     describe: "The id of the coffee product to get details for.",
   })
+  .option("reportPrice" , {
+    default: true,
+    type: "boolean",
+    describe: "Should the price be included as part of the plain text report?",
+  })
+  .option("reportReviews", {
+    default: true,
+    type: "boolean",
+    describe: "Should the reviews be included as part of the plain text report?",
+  })
   .option("format", {
     type: "string",
     alias: "f",
@@ -46,5 +56,14 @@ export class App extends AppBase {
 
   async executeAsync(): Promise<void> {
     await this.runStepsAsync();
+  }
+
+  buildIgnoreKeys() {
+    const keys: string[] = [];
+
+    if (!this.argv.reportPrice) keys.push('price');
+    if (!this.argv.reportReviews) keys.push('rating');
+
+    return keys;
   }
 }

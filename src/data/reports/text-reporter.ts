@@ -4,7 +4,7 @@ import { IReporter } from "./ireporter";
 export class TextReporter<T extends ISupportPlainTextOutput>
   implements IReporter<T>
 {
-  generateReport(item: T): string {
-    return item.toPlainText();
+  generateReport(item: T, ignoreKeys: string[] = []): string {
+    return item.toPlainText(ignoreKeys);
   }
 }

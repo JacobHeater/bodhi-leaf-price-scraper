@@ -18,15 +18,19 @@ from the main README file.
 
 ```bash
 Options:
-      --help      Show help                                            [boolean]
-      --version   Show version number                                  [boolean]
-      --id        The id of the coffee product to get details for.
+      --help           Show help                                       [boolean]
+      --version        Show version number                             [boolean]
+      --id             The id of the coffee product to get details for.
                                                              [string] [required]
-  -f, --format    The format the report should be generated in.
+      --reportPrice    Should the price be included as part of the plain text
+                       report?                         [boolean] [default: true]
+      --reportReviews  Should the reviews be included as part of the plain text
+                       report?                         [boolean] [default: true]
+  -f, --format         The format the report should be generated in.
                             [string] [choices: "json", "text"] [default: "text"]
-  -p, --pretty    Do you want to pretty print the JSON?
+  -p, --pretty         Do you want to pretty print the JSON?
                                                       [boolean] [default: false]
-      --noHeader  Do you want to omit the header from stdout?
+      --noHeader       Do you want to omit the header from stdout?
                                                       [boolean] [default: false]
 ```
 

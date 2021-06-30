@@ -3,5 +3,5 @@ export interface IArrayReporter<T> {
 }
 
 export interface IReporter<T> {
-  generateReport(item: T): string;
+  generateReport(item: T, ignoreKeys?: string[]): string;
 }
