@@ -1,12 +1,8 @@
-import { CSVReporter } from "../../data/reports/csv-reporter";
 import { JsonReporter } from "../../data/reports/json-reporter";
 import {
-  REPORT_FORMAT_TABLE,
-  REPORT_FORMAT_CSV,
   REPORT_FORMAT_JSON,
-  REPORT_FORMAT_TEXT,
+  REPORT_FORMAT_TEXT
 } from "../../data/reports/report-options";
-import { TableReporter } from "../../data/reports/table-reporter";
 import { TextReporter } from "../../data/reports/text-reporter";
 import { Logger } from "../../logging/logger";
 import { App } from "../../search-by-id.app";

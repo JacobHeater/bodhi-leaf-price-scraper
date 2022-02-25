@@ -1,8 +1,9 @@
 import yargs from "yargs";
+
 import { AppBase } from "./app-base";
 import {
   REPORT_FORMATS_DETAILS,
-  REPORT_FORMAT_TEXT,
+  REPORT_FORMAT_TEXT
 } from "./data/reports/report-options";
 import { ProductDetails } from "./models/product-details";
 import { GenerateReportStep } from "./steps/product-details/generate-report";

@@ -1,10 +1,11 @@
-import { StepBase } from "../step-base";
 import readline from "readline-sync";
-import { SORT_OPTIONS } from "../../data/sort-options";
+
 import { sortAscending, sortDescending } from "../../data/sort";
-import { Product } from "../../models/product";
+import { SORT_OPTIONS } from "../../data/sort-options";
 import { Logger } from "../../logging/logger";
+import { Product } from "../../models/product";
 import { App } from "../../product-scrape.app";
+import { StepBase } from "../step-base";
 
 export class SortProductsStep extends StepBase<App> {
   async executeAsync(...args: any[]): Promise<void> {

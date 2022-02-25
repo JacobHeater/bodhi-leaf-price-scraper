@@ -1,15 +1,19 @@
 import axios, { AxiosResponse } from "axios";
+import htmlToText from "html-to-text";
 import { JSDOM } from "jsdom";
+
+import { createTimestamps } from '../debug/timestamps';
 import { Base64 } from "../encoding/base64";
+import { Logger } from "../logging/logger";
 import { Product } from "../models/product";
 import { ProductDetails } from "../models/product-details";
-import htmlToText from "html-to-text";
-import { Logger } from "../logging/logger";
 import { DescriptionMetadataDefinition } from "../models/product-details-metadata-definitions";
+
 
 const BASE_URL = "https://www.bodhileafcoffee.com/";
 
 export class ProductController {
+  @createTimestamps('Find coffees from Bodhi')
   async findCoffeesFromBodhiAsync(): Promise<Product[]> {
     return this.findAllProductsAsync();
   }

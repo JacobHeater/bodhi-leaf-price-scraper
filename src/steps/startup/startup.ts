@@ -1,7 +1,7 @@
-import { StepBase } from "../step-base";
 import { version } from '../../../package.json';
 import { Logger } from "../../logging/logger";
 import { App } from "../../product-scrape.app";
+import { StepBase } from "../step-base";
 
 export class StartupStep extends StepBase<App> {
   supportsInteractive = false;

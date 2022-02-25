@@ -1,17 +1,18 @@
+import readline from "readline-sync";
+
+import { CSVReporter } from "../../data/reports/csv-reporter";
+import { JsonReporter } from "../../data/reports/json-reporter";
 import {
   REPORT_FORMATS,
   REPORT_FORMAT_CSV,
   REPORT_FORMAT_JSON,
-  REPORT_FORMAT_TABLE,
+  REPORT_FORMAT_TABLE
 } from "../../data/reports/report-options";
-import { StepBase } from "../step-base";
-import readline from "readline-sync";
 import { TableReporter } from "../../data/reports/table-reporter";
-import { JsonReporter } from "../../data/reports/json-reporter";
-import { CSVReporter } from "../../data/reports/csv-reporter";
 import { Logger } from "../../logging/logger";
-import { App } from "../../product-scrape.app";
 import { Product } from "../../models/product";
+import { App } from "../../product-scrape.app";
+import { StepBase } from "../step-base";
 
 export class GenerateReportStep extends StepBase<App> {
   async executeAsync(): Promise<void> {

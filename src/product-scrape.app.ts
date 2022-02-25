@@ -1,14 +1,14 @@
 import yargs from "yargs";
-import { Product } from "./models/product";
+
+import { version } from "../package.json";
+import { AppBase } from "./app-base";
 import { REPORT_FORMATS, REPORT_FORMAT_TABLE } from "./data/reports/report-options";
 import { DIR_ASCENDING, KEY_PRICE, SORT_OPTIONS } from "./data/sort-options";
-import { IStep } from "./steps/istep";
+import { Product } from "./models/product";
 import { GenerateReportStep } from "./steps/products/generate-report";
 import { RetrieveProductsStep } from "./steps/products/retrieve-products";
 import { SortProductsStep } from "./steps/products/sort-products";
 import { StartupStep } from "./steps/startup/startup";
-import { version } from "../package.json";
-import { AppBase } from "./app-base";
 
 const argv = yargs
   .version(`Bodhi Leaf Coffee Traders Price Scraper v${version}`)

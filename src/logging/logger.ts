@@ -1,4 +1,5 @@
 import chalk from "chalk";
+
 import { ResourceReader } from "../res/resource-reader";
 
 export class Logger {

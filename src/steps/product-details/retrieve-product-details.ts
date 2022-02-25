@@ -1,7 +1,7 @@
-import { StepBase } from "../step-base";
-import { App } from "../../search-by-id.app";
 import { ProductController } from "../../controllers/product-controller";
 import { Logger } from "../../logging/logger";
+import { App } from "../../search-by-id.app";
+import { StepBase } from "../step-base";
 
 export class RetrieveProductDetailsStep extends StepBase<App> {
   supportsInteractive = false;
