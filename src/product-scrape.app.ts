@@ -1,8 +1,12 @@
 import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 
 import { version } from "../package.json";
 import { AppBase } from "./app-base";
-import { REPORT_FORMATS, REPORT_FORMAT_TABLE } from "./data/reports/report-options";
+import {
+  REPORT_FORMATS,
+  REPORT_FORMAT_TABLE,
+} from "./data/reports/report-options";
 import { DIR_ASCENDING, KEY_PRICE, SORT_OPTIONS } from "./data/sort-options";
 import { Product } from "./models/product";
 import { GenerateReportStep } from "./steps/products/generate-report";
@@ -10,7 +14,7 @@ import { RetrieveProductsStep } from "./steps/products/retrieve-products";
 import { SortProductsStep } from "./steps/products/sort-products";
 import { StartupStep } from "./steps/startup/startup";
 
-const argv = yargs
+const argv = yargs(hideBin(process.argv))
   .version(`Bodhi Leaf Coffee Traders Price Scraper v${version}`)
   .option("sort", {
     alias: "s",

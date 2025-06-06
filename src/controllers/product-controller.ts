@@ -63,7 +63,7 @@ export class ProductController {
     try {
       response = await axios.get(url);
     } catch (e) {
-      if (e.message.includes("404")) {
+      if ((e as Error).message.includes("404")) {
         Logger.error("Coffee not found. Exiting with non-zero status code.");
 
         process.exit(1);
